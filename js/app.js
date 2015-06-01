@@ -1,15 +1,17 @@
 //  Add Box Elements
 var newTaskInput = document.getElementById('new-task');
 var addLink = document.getElementsByTagName('button')[0];
-// TODo list Elements
-var incompleteList = document.getElementById('incomplete-tasks');
 
+// TODO list Elements
+var incompleteList = document.getElementById('incomplete-tasks');
+var editButtons = document.getElementsByClassName('edit');
 
 
 
 // Add Item to TODO list
 var addIncompleteItem = function(){
   console.log("addIncompleteItem");
+
   // create incomplete todo item elements]
   var listItem = document.createElement("li");
   var checkbox = document.createElement("input");
@@ -23,12 +25,15 @@ var addIncompleteItem = function(){
   editButton.innerText = "edit"
   deleteButton.className = "delete";
   deleteButton.innerText = "delete"
+
   //turn input into checkbox
   checkbox.type = "checkbox";
   inputTask.type = "text";
+
   //put text into label
   var text = newTaskInput.value;
-  labelTask.value = text;
+  labelTask.innerText = text;
+
   // append elements to incomplete list
   listItem.appendChild(checkbox);
   listItem.appendChild(checkbox);
@@ -38,17 +43,26 @@ var addIncompleteItem = function(){
   listItem.appendChild(deleteButton);
   incompleteList.appendChild(listItem);
 
-
+  // empty input labelTask 
+  newTaskInput.value = "";
 }
 
 // toggle checkbox moves to completed
 // toggle in checklist allows
 
 //edit in TODO allows editing of TODO list
+var editTask = function(){
+  console.log('edit task');
+}
 
 //edit in Completed allows editing of completed list
 
 // Delete removes the todo list item
 
 //eventListener to add incomplete Item
+document.getElementsByTagName("button")[0].addEventListener("click", addIncompleteItem);
 
+// edit task event listener
+for(var i=0; i<editButtons.length;i++){
+  editButtons[i].addEventListener("click", editTask);
+}
